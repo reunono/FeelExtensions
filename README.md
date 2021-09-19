@@ -4,6 +4,7 @@ This repository contains community-created extensions for Feel, More Mountains' 
 ## Contents
 * **DOTweenPro Feedbacks**, _by Anton_ : will let you play/play backwards/rewind/pause/restart/complete/kill both DOTween animations and DOTween paths
 * **FlareLight2D**, _by Jaron_ : will turn a light on or off based on its proximity to the player
+* **FMODEventFeedback**, _by Kaizen_ : will let you play a FMOD event
 * **MMFeedbackLight2D**, _by Jaron_ : this feedback lets you control the color and intensity of a 2D Light in your scene for a certain duration (or instantly)
 * **PulsateLight2D**, _by Jaron_ : lets a 2D light pulsate over time
 
