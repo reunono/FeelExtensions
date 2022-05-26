@@ -5,14 +5,14 @@ using UnityEngine;
 namespace MoreMountains.Feedbacks
 {
     /// <summary>
-    /// This feedback will let you change the color of a target Renderer over time.
+    /// This feedback will make the material of a chosen Renderer to change alpha over time
     /// I would be happy to add more DOTween feedbacks or add new functionality by your request. Feel free to address me via github:@pauldyatlov
     /// </summary>
     [AddComponentMenu("")]
-    [FeedbackHelp("This feedback will let you change the color of a target Renderer over time.")]
-    [FeedbackPath("DOTween/Color")]
+    [FeedbackHelp("This feedback will make the material of a chosen Renderer to change alpha over time. Please note that your Renderer material should support changing its alpha")]
+    [FeedbackPath("DOTween/Renderer Fade")]
     [Serializable]
-    public sealed class DOTweenColorMMFeedback : MMF_Feedback
+    public sealed class DOTweenFadeMMFeedback : MMF_Feedback
     {
         [MMFInspectorGroup("Renderer", true, 54, true)]
         [Tooltip("The Renderer to affect when playing the feedback")]
@@ -21,16 +21,16 @@ namespace MoreMountains.Feedbacks
         [Tooltip("For how long the Renderer should change its color over time (per one iteration)")]
         [SerializeField] private float _duration = 0.2f;
 
-        [Tooltip("How many times should that tick go for")]
-        [SerializeField] private int _loopsCount = 1;
-
         [Tooltip("Ff this is true, the target will be disabled when this feedbacks is stopped")]
         [SerializeField] private bool _disableOnStop;
 
-        [Tooltip("The color to move to")]
-        [SerializeField] private Color _toColor = Color.red;
+        [Tooltip("The value to move the alpha to")]
+        [SerializeField] private float _toAlpha = 0.1f;
 
-        private Tweener _colorTweener;
+        [Tooltip("Should the alpha value go back to the original")]
+        [SerializeField] private bool _goBack = true;
+
+        private Tweener _alphaTweener;
 
 #if UNITY_EDITOR
         public override Color FeedbackColor => MMFeedbacksInspectorColors.UIColor;
@@ -60,10 +60,11 @@ namespace MoreMountains.Feedbacks
             Turn(true);
             EndTweener();
 
-            var fromColor = _renderer.material.color;
-            _colorTweener = _renderer.material.DOColor(_toColor, _duration)
-                .SetLoops(_loopsCount)
-                .OnComplete(() => _renderer.material.DOColor(fromColor, _duration));
+            var fromAlpha = _renderer.material.color.a;
+            _alphaTweener = _renderer.material.DOFade(_toAlpha, _duration);
+
+            if (_goBack)
+                _alphaTweener = _alphaTweener.OnComplete(() => _renderer.material.DOFade(fromAlpha, _duration));
         }
 
         protected override void CustomStopFeedback(Vector3 position, float feedbacksIntensity = 1)
@@ -81,7 +82,7 @@ namespace MoreMountains.Feedbacks
 
         private void EndTweener()
         {
-            _colorTweener?.Kill(true);
+            _alphaTweener?.Kill(true);
         }
 
         /// <summary>
