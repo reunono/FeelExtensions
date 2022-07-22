@@ -1,22 +1,21 @@
-using UnityEngine;
+using FMODUnity;
 using MoreMountains.Feedbacks;
+using UnityEngine;
 
 namespace YOURNAMESPACE
+
 {
     [AddComponentMenu("")]
-    [FeedbackHelp("FMOD Event feedback")]
-    [FeedbackPath("YOURPATH/FMODEvent")]
-    public class FmodEventFeedback : MMFeedback
+    [FeedbackHelp("Event Feedback")]
+    [FeedbackPath("FMOD")]
+    public class FmodEventFeedback : MMF_Feedbacks
     {
-        [FMODUnity.EventRef]
-        public string EventName;
+        public EventReference EventName;
 
-        protected override void CustomPlayFeedback(Vector3 position, float attenuation = 1.0f)
+        protected override void CustomPlayFeedback(Vector3 position, float intensity = 1.0f)
         {
-            if (EventName != "")
-            {
+            if (!EventName.IsNull)
                 FMODUnity.RuntimeManager.PlayOneShot(EventName, position);
-            }
         }
     }
 }
