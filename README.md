@@ -2,6 +2,7 @@
 This repository contains community-created extensions for Feel, More Mountains' bestselling game feel solution, [available on the Unity Asset Store](http://u3d.as/2acD?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing feedback, to brand new ones, or new ways to improve your game's juice.
 
 ## Contents
+* **CollisionHelper**, _by Dravish_ : Collision Helper and Manager
 * **DOTweenPro Feedbacks**, _by Anton_ : will let you play/play backwards/rewind/pause/restart/complete/kill both DOTween animations and DOTween paths
 * **FlareLight2D**, _by Jaron_ : will turn a light on or off based on its proximity to the player
 * **FMODEventFeedback**, _by Kaizen_ : will let you play a FMOD event
