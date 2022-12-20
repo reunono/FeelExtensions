@@ -6,24 +6,29 @@ using static MMFCollisionManager;
 
 public class MMFCollisionManager : MonoBehaviour
 {
-    [System.Serializable]
+    [System.Serializable]    
     public struct MMFObjects
     {
-        public string ObjectName;
+        [Tooltip("this name is useful for identification in your Manager, but MUST match the Tag Name of the Game Object if 'Compare Tag' is enabled")]
+        public string TagName;
+        [Tooltip("if this is enabled then the Tag Name must match the Tag Name of the Game Object")]
+        public bool CompareTag;
+        [Tooltip("the game object you want to play the feedback when the collision(compare) check is met - drag game object here")]
         public GameObject GameObject;
+        [Tooltip("the feedback/s you want to play when the collision(compare) check is met - drag game object with MMF Player here")]
         public MMFeedbacks MMFPlayer;
-        public LayerMask LayerMask;
+        [Tooltip("the layer/s you want to check for the collision(compare) check to be met")]
+        public LayerMask LayerMask;        
     }
     
-    [System.Serializable]
+    [System.Serializable]    
     public class MMFCollisionLists
     {
-        public string ListName;
+        public string ListName;        
         public List<MMFObjects> feedbackObjects;
     }
     
-    public List<MMFCollisionLists> CollisionLists;
-
+    public List<MMFCollisionLists> CollisionLists;    
     public void CheckAndPlay(GameObject collidingObject)
     {
         foreach (MMFCollisionLists CollisionList in CollisionLists)
@@ -31,8 +36,8 @@ public class MMFCollisionManager : MonoBehaviour
             // Find the FeedbackObjects that contains the collided gameObject
             MMFObjects feedbackObjects = CollisionList.feedbackObjects.Find(x => x.GameObject == collidingObject);
 
-            // Check if the colliding object is in the specified layer
-            if (feedbackObjects.LayerMask == (feedbackObjects.LayerMask | (1 << collidingObject.gameObject.layer)))
+            // Check if the colliding object is in the specified layer and has the correct tag (if CompareTag is true)
+            if (feedbackObjects.LayerMask == (feedbackObjects.LayerMask | (1 << collidingObject.gameObject.layer)) && (!feedbackObjects.CompareTag || collidingObject.CompareTag(feedbackObjects.TagName)))
             {
                 // Initialize and play the feedback for the gameObject
                 feedbackObjects.MMFPlayer.Initialization();
