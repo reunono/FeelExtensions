@@ -15,7 +15,7 @@ There are several advantages to using the MMFCollisionManager and MMFCollisionHe
 Overall, using the MMFCollisionManager and MMFCollisionHelper scripts can help you to efficiently and effectively manage and trigger collision-based feedback effects in your Unity project.
 
 --------------
-
+***PLEASE SEE END OF README FOR UPDATED COMPARE TAG OPTION***
 Here is a step-by-step guide on how to use the MMFCollisionManager and MMFCollisionHelper scripts in a Unity project:
 
 1. Add the MMFCollisionManager script to an empty game object in your Unity project. This will be the object that manages the collision-based feedback effects.
@@ -41,7 +41,7 @@ Here is a step-by-step guide on how to use the MMFCollisionManager and MMFCollis
 Repeat steps 8-10 for each game object that you want to trigger collision-based feedback effects when it collides with another object.
 
 Now, when the game objects with the MMFCollisionHelper script attached to them collide with other objects that are in the specified layer(s), the MMFCollisionManager script will trigger the appropriate feedback effect(s).
-
+***PLEASE SEE END OF README FOR UPDATED COMPARE TAG OPTION***
 ------------------------------------------------
 
 **MMFCollisionManager.cs**
@@ -110,5 +110,31 @@ Consider the size of your lists: If you have a large number of objects that need
 Consider the structure of your game: You might want to consider organizing your objects based on the structure or hierarchy of your game. For example, you might want to create separate lists for objects that are used in specific levels, or objects that are used in specific game modes.
 
 Ultimately, the best way to organize your objects will depend on the specific needs and goals of your project. It's always a good idea to take some time to think about how you want to structure your objects and what will work best for your project.
+
+***UPDATED COMPARE TAG OPTION ADDED***
+
+Here's a step-by-step explanation of how the updated OnTriggerEnter method works:
+
+The OnTriggerEnter method is called automatically whenever a trigger collider enters the trigger area of the game object that this script is attached to. The other parameter is a reference to the collider that entered the trigger area.
+
+The MMFCollisionLists structure in the CollisionLists list that corresponds to the current object is identified using the MMFCollisionListName field and the ListName field of each MMFCollisionLists structure. This is done using the Find method and a lambda expression.
+
+The MMFObjects structure in the feedbackObjects list of the CollisionList that corresponds to the colliding object is identified using the GameObject field of each MMFObjects structure and the other.gameObject parameter. This is also done using the Find method and a lambda expression.
+
+The CollisionList and feedbackObject structures are checked to make sure that they exist and that the colliding object is in the correct layer. If these conditions are met, the CheckAndPlay method of the MMFCollisionManager class is called with the colliding object as an argument.
+
+The CheckAndPlay method checks whether the CompareTag field of the feedbackObject structure is true, and if it is, it checks whether the colliding object has the correct tag using the CompareTag method. If both the layer and tag conditions are met (or if the CompareTag field is false), the feedbacks associated with the colliding object are initialized and played using the MMFeedbacks component of the feedbackObject structure.
+
+With the option to compare tags, you can use the MMFCollisionManager class to handle collisions in more sophisticated and flexible ways. Here are a few examples of new possibilities that you might consider:
+
+You can use tags to specify different types of objects that can trigger feedbacks, and then use the CompareTag field to enable or disable the tag check for each object as needed. This can be useful if you have a large number of objects in your scene and you want to selectively enable feedbacks for only some of them.
+
+You can use tags to specify different types of feedbacks that should be played for different types of objects. For example, you might want to play a different set of feedbacks for objects with a "Damageable" tag than for objects with an "Interactive" tag.
+
+You can use tags to specify different feedbacks for different types of collisions. For example, you might want to play a different set of feedbacks if the player character collides with an enemy from the front than if they collide with an enemy from the side or from behind.
+
+You can use tags to specify different feedbacks for different types of player actions. For example, you might want to play different feedbacks if the player character attacks an enemy with a sword than if they attack an enemy with a bow and arrow.
+
+These are just a few examples, and there are many other possibilities depending on the specific requirements of your project. The ability to compare tags can make the MMFCollisionManager class more powerful and flexible, allowing you to customize the way that feedbacks are played in response to different types of collisions and player actions.
 
 Enjoy!
