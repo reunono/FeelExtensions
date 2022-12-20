@@ -11,13 +11,13 @@ public class MMFCollisionHelper : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Find the MMFCollisionLists that contains the collided gameObject
-        MMFCollisionLists mMFCollisionList = MMFCollisionManager.mMFCollisionLists.Find(x => x.ListName == MMFCollisionListName);
+        MMFCollisionLists CollisionList = MMFCollisionManager.CollisionLists.Find(x => x.ListName == MMFCollisionListName);
 
         // Find the MMFObjects that contains the collided gameObject
-        MMFObjects feedbackObject = mMFCollisionList.feedbackObjects.Find(x => x.GameObject == other.gameObject);
+        MMFObjects feedbackObject = CollisionList.feedbackObjects.Find(x => x.GameObject == other.gameObject);
 
         // Check if the MMFCollisionLists exists and the colliding object is in the specified layer
-        if (mMFCollisionList != null && feedbackObject.LayerMask == (feedbackObject.LayerMask | (1 << other.gameObject.layer)))
+        if (CollisionList != null && feedbackObject.LayerMask == (feedbackObject.LayerMask | (1 << other.gameObject.layer)))
         {
             // Call the CheckAndPlay method with the colliding object
             MMFCollisionManager.CheckAndPlay(other.gameObject);
