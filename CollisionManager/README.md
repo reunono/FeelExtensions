@@ -20,13 +20,13 @@ Here is a step-by-step guide on how to use the MMFCollisionManager and MMFCollis
 
 1. Add the MMFCollisionManager script to an empty game object in your Unity project. This will be the object that manages the collision-based feedback effects.
 
-3. In the MMFCollisionManager script's mMFCollisionLists list, create a new MMFCollisionLists element. Set the Name field to a descriptive string.
+3. In the MMFCollisionManager script's Collision Lists, create a new element. Set the Name field to a descriptive string.
 
-5. In the feedbackObjects list of the new MMFCollisionLists element, create a new MMFObjects element. Set the Name field to a descriptive string.
+5. In the Feedback Objects list of the new element, create a new MMFObjects element. Set the Name field to a descriptive string.
 
-7. Drag a game object from your scene into the GameObject field of the MMFObjects element. This will be the object that the feedback effect is triggered on when it collides with another object.
+7. Drag a game object from your scene into the Game Object field of the MMFObjects element. This will be the object that the feedback effect is triggered on when it collides with another object.
 
-9. Drag an MMFeedbacks Player component from the project hierarchy into the Feedback field of the MMFObjects element. This component will handle playing the feedback effect.
+9. Drag an MMF Player component from the project hierarchy into the MMF Player field of the MMFObjects element. This component will handle playing the feedback effect.
 
 11. Set the LayerMask field of the MMFObjects element to the layer or layers that the colliding object must be in for the feedback effect to be triggered.
 
@@ -36,7 +36,7 @@ Here is a step-by-step guide on how to use the MMFCollisionManager and MMFCollis
 
 17. Drag the game object with the MMFCollisionManager script attached to it into the MMFCollisionManager field of the MMFCollisionHelper script.
 
-19. Set the MMFCollisionListName field of the MMFCollisionHelper script to the name of the MMFCollisionLists element in the MMFCollisionManager script's mMFCollisionLists list that you want to use for this game object.
+19. Set the MMF Collision List Name field of the MMFCollisionHelper script to the name of the List Name element that you want to use for this game object.
 
 Repeat steps 8-10 for each game object that you want to trigger collision-based feedback effects when it collides with another object.
 
@@ -46,25 +46,25 @@ Now, when the game objects with the MMFCollisionHelper script attached to them c
 
 **MMFCollisionManager.cs**
 
-This is a script for managing collisions in Unity. The MMFCollisionManager class has a list of MMFCollisionLists objects, which in turn have a list of MMFObjects objects. The MMFObjects struct includes a GameObject field, which represents the game object that the collision is being checked for, and a MMFeedbacks field, which is a component that plays a series of feedbacks when activated. The CheckAndPlay method iterates through each MMFCollisionLists object in the list and finds the MMFObjects object that has a GameObject field that matches the collidingObject parameter. If the collidingObject is in the specified layer specified in the LayerMask field of the MMFObjects object, the feedbacks are initialized and played.
+This is a script for managing collisions in Unity. The MMFCollisionManager class has a list of MMFCollisionLists objects, which in turn have a list of MMFObjects objects. The MMFObjects struct includes a GameObject field, which represents the game object that the collision is being checked for, and a MMF Player field, which is a component that plays a series of feedbacks when activated. The CheckAndPlay method iterates through each CollisionLists object in the list and finds the MMFObjects object that has a GameObject field that matches the collidingObject parameter. If the collidingObject is in the specified layer specified in the LayerMask field of the MMFObjects object, the feedbacks are initialized and played.
 
 **The MMFCollisionManager script is a component that can be added to a game object in Unity. It is used to manage collisions between game objects and play feedbacks when those collisions occur.**
 
 The MMFCollisionManager script has the following fields:
 
-- mMFCollisionLists: This is a list of MMFCollisionLists objects. Each MMFCollisionLists object represents a set of game objects and feedbacks that will be checked and played when a collision occurs.
+- CollisionLists: This is a list of MMFCollisionLists objects. Each CollisionLists object represents a set of game objects and feedbacks that will be checked and played when a collision occurs.
 - The MMFCollisionLists class has the following fields:
 
-- Name: This is the name of the MMFCollisionLists object. It can be used to identify the object and to specify which list to use in the MMFCollisionHelper component.
-- feedbackObjects: This is a list of MMFObjects objects. Each MMFObjects object represents a game object and feedbacks that will be checked and played when a collision occurs.
+- Object Name: This is the name of the CollisionLists object. It can be used to identify the object and to specify which list to use in the MMFCollisionHelper component.
+- Feedback Objects: This is a list of MMFObjects objects. Each MMFObjects object represents a game object and feedbacks that will be checked and played when a collision occurs.
 
 The MMFObjects struct has the following fields:
 
-- **Name**: This is the name of the MMFObjects object. It can be used to identify the object.
-- **GameObject**: This is the game object that will be checked for collisions.
-- **Feedback**: This is the MMFeedbacks component that contains the feedbacks that will be played when a collision occurs.
+- **Object Name**: This is the name of the MMFObjects object. It can be used to identify the object.
+- **Game Object**: This is the game object that will be checked for collisions.
+- **MMF Player**: This is the MMFPlayer component that contains the feedbacks that will be played when a collision occurs.
 - **LayerMask**: This is the layer that the game object must be in for the feedbacks to be played when a collision occurs.
-  To add a new MMFCollisionLists object to the MMFCollisionManager component, click the "+" button next to the mMFCollisionLists field and select "Add New MMFCollisionLists". This will create a new MMFCollisionLists object in the list. You can then add game objects and feedbacks to this object by adding new MMFObjects objects to the feedbackObjects list and specifying the game object, feedbacks, and layer mask for each object.
+  To add a new Collision Lists object to the MMFCollisionManager component, click the "+" button next to the Collision Lists field. This will create a new list. You can then add game objects and feedbacks to this object by adding new MMFObjects objects to the Feedback Objects list and specifying the game object, feedbacks, and layer mask for each object.
 
 To trigger the feedbacks, you can call the CheckAndPlay method of the MMFCollisionManager component with a game object as a parameter. This will check the game object against the MMFCollisionLists objects and MMFObjects objects in the MMFCollisionManager component to see if it is in the specified layer and if so, it will play the feedbacks.
 
