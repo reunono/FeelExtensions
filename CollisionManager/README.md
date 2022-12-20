@@ -99,4 +99,16 @@ Playing gameplay mechanics when two game objects collide: You can use the MMFCol
 
 These are just a few examples of the types of feedbacks and gameplay mechanics that can be triggered using the MMFCollisionManager and MMFCollisionHelper scripts. There are many other possible use cases and configurations that you can set up depending on your game's needs.
 
+The optimal way to organize your game objects with this script would depend on the specific needs and goals of your project. Here are a few general tips that might be helpful:
+
+Group similar objects together: If you have multiple objects that perform similar functions or are used in similar contexts, you might want to consider grouping them together in the same MMFCollisionList. This can help you manage and organize your objects more efficiently.
+
+Use meaningful names: Giving your MMFCollisionList and MMFObjects structures descriptive names can make it easier to understand what each group of objects is being used for and how they interact with each other.
+
+Consider the size of your lists: If you have a large number of objects that need to be organized, it might be more efficient to break them up into smaller lists. This can make it easier to manage and work with your objects, especially if you need to make changes or updates to specific groups of objects.
+
+Consider the structure of your game: You might want to consider organizing your objects based on the structure or hierarchy of your game. For example, you might want to create separate lists for objects that are used in specific levels, or objects that are used in specific game modes.
+
+Ultimately, the best way to organize your objects will depend on the specific needs and goals of your project. It's always a good idea to take some time to think about how you want to structure your objects and what will work best for your project.
+
 Enjoy!
