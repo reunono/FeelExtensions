@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using MoreMountains.Feedbacks;
+using static MMFCollisionManager;
+
+public class MMFCollisionManager : MonoBehaviour
+{
+    [System.Serializable]
+    public struct MMFObjects
+    {
+        public string Name;
+        public GameObject GameObject;
+        public MMFeedbacks Feedback;
+        public LayerMask LayerMask;
+    }
+    
+    [System.Serializable]
+    public class MMFCollisionLists
+    {
+        public string Name;
+        public List<MMFObjects> feedbackObjects;
+    }
+    
+    public List<MMFCollisionLists> mMFCollisionLists;
+
+    public void CheckAndPlay(GameObject collidingObject)
+    {
+        foreach (MMFCollisionLists mMFCollisionList in mMFCollisionLists)
+        {
+            // Find the FeedbackObjects that contains the collided gameObject
+            MMFObjects feedbackObjects = mMFCollisionList.feedbackObjects.Find(x => x.GameObject == collidingObject);
+
+            // Check if the colliding object is in the specified layer
+            if (feedbackObjects.LayerMask == (feedbackObjects.LayerMask | (1 << collidingObject.gameObject.layer)))
+            {
+                // Initialize and play the feedback for the gameObject
+                feedbackObjects.Feedback.Initialization();
+                feedbackObjects.Feedback.PlayFeedbacks();
+            }
+        }
+    }
+}
