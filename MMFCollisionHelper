@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static MMFCollisionManager;
+
+public class MMFCollisionHelper : MonoBehaviour
+{
+    public MMFCollisionManager MMFCollisionManager;
+    public string MMFCollisionListName;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Find the MMFCollisionLists that contains the collided gameObject
+        MMFCollisionLists mMFCollisionList = MMFCollisionManager.mMFCollisionLists.Find(x => x.Name == MMFCollisionListName);
+
+        // Find the MMFObjects that contains the collided gameObject
+        MMFObjects feedbackObject = mMFCollisionList.feedbackObjects.Find(x => x.GameObject == other.gameObject);
+
+        // Check if the MMFCollisionLists exists and the colliding object is in the specified layer
+        if (mMFCollisionList != null && feedbackObject.LayerMask == (feedbackObject.LayerMask | (1 << other.gameObject.layer)))
+        {
+            // Call the CheckAndPlay method with the colliding object
+            MMFCollisionManager.CheckAndPlay(other.gameObject);
+        }
+    }
+}
