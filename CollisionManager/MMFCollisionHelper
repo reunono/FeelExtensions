@@ -11,7 +11,7 @@ public class MMFCollisionHelper : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Find the MMFCollisionLists that contains the collided gameObject
-        MMFCollisionLists mMFCollisionList = MMFCollisionManager.mMFCollisionLists.Find(x => x.Name == MMFCollisionListName);
+        MMFCollisionLists mMFCollisionList = MMFCollisionManager.mMFCollisionLists.Find(x => x.ListName == MMFCollisionListName);
 
         // Find the MMFObjects that contains the collided gameObject
         MMFObjects feedbackObject = mMFCollisionList.feedbackObjects.Find(x => x.GameObject == other.gameObject);
