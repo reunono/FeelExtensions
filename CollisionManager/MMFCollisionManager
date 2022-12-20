@@ -11,7 +11,7 @@ public class MMFCollisionManager : MonoBehaviour
     {
         public string ObjectName;
         public GameObject GameObject;
-        public MMFeedbacks Feedback;
+        public MMFeedbacks MMFPlayer;
         public LayerMask LayerMask;
     }
     
@@ -22,21 +22,21 @@ public class MMFCollisionManager : MonoBehaviour
         public List<MMFObjects> feedbackObjects;
     }
     
-    public List<MMFCollisionLists> mMFCollisionLists;
+    public List<MMFCollisionLists> CollisionLists;
 
     public void CheckAndPlay(GameObject collidingObject)
     {
-        foreach (MMFCollisionLists mMFCollisionList in mMFCollisionLists)
+        foreach (MMFCollisionLists CollisionList in CollisionLists)
         {
             // Find the FeedbackObjects that contains the collided gameObject
-            MMFObjects feedbackObjects = mMFCollisionList.feedbackObjects.Find(x => x.GameObject == collidingObject);
+            MMFObjects feedbackObjects = CollisionList.feedbackObjects.Find(x => x.GameObject == collidingObject);
 
             // Check if the colliding object is in the specified layer
             if (feedbackObjects.LayerMask == (feedbackObjects.LayerMask | (1 << collidingObject.gameObject.layer)))
             {
                 // Initialize and play the feedback for the gameObject
-                feedbackObjects.Feedback.Initialization();
-                feedbackObjects.Feedback.PlayFeedbacks();
+                feedbackObjects.MMFPlayer.Initialization();
+                feedbackObjects.MMFPlayer.PlayFeedbacks();
             }
         }
     }
