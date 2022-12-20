@@ -1,5 +1,5 @@
 ﻿**- MMF Collider Manager -**
-Designed by: **MinitVRe Studio**
+Designed by: **MiniatVRe Studio**
 Written by: *ChatGPT*
 
 There are several advantages to using the MMFCollisionManager and MMFCollisionHelper scripts in a Unity project:
