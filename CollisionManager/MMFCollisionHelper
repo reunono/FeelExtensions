@@ -5,7 +5,9 @@ using static MMFCollisionManager;
 
 public class MMFCollisionHelper : MonoBehaviour
 {
+    [Tooltip("the game object that your MMFCollisionManager is on - drag the game object with the MMFCollisionManager script here")]
     public MMFCollisionManager MMFCollisionManager;
+    [Tooltip("the 'List Name' that the game object you want to collide with is in - copy the name and paste it here")]
     public string MMFCollisionListName;
 
     private void OnTriggerEnter(Collider other)
@@ -16,8 +18,8 @@ public class MMFCollisionHelper : MonoBehaviour
         // Find the MMFObjects that contains the collided gameObject
         MMFObjects feedbackObject = CollisionList.feedbackObjects.Find(x => x.GameObject == other.gameObject);
 
-        // Check if the MMFCollisionLists exists and the colliding object is in the specified layer
-        if (CollisionList != null && feedbackObject.LayerMask == (feedbackObject.LayerMask | (1 << other.gameObject.layer)))
+        // Check if the MMFCollisionLists exists and the colliding object is in the specified layer and has the correct tag (if CompareTag is true)
+        if (CollisionList != null && feedbackObject.LayerMask == (feedbackObject.LayerMask | (1 << other.gameObject.layer)) && (!feedbackObject.CompareTag || other.gameObject.CompareTag(feedbackObject.TagName)))
         {
             // Call the CheckAndPlay method with the colliding object
             MMFCollisionManager.CheckAndPlay(other.gameObject);
