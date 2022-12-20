@@ -9,7 +9,7 @@ public class MMFCollisionManager : MonoBehaviour
     [System.Serializable]
     public struct MMFObjects
     {
-        public string Name;
+        public string ObjectName;
         public GameObject GameObject;
         public MMFeedbacks Feedback;
         public LayerMask LayerMask;
@@ -18,7 +18,7 @@ public class MMFCollisionManager : MonoBehaviour
     [System.Serializable]
     public class MMFCollisionLists
     {
-        public string Name;
+        public string ListName;
         public List<MMFObjects> feedbackObjects;
     }
     
