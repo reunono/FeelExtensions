@@ -13,6 +13,8 @@ namespace MoreMountains.Feedbacks
         public static bool FeedbackTypeAuthorized = true;
         /// pick a color here for your feedback's inspector
 #if UNITY_EDITOR
+        public override bool EvaluateRequiresSetup() { return (!VFX); }
+        public override string RequiresSetupText { get { return "This feedback requires that a VisualEffect be set to be able to work properly. You can set one below."; } }
         public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.DebugColor; } }
 #endif
         
@@ -25,6 +27,7 @@ namespace MoreMountains.Feedbacks
         {
             base.CustomInitialization(owner);
             // your init code goes here
+            VFX.enabled = false;
         }
 
         protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f)
@@ -32,7 +35,12 @@ namespace MoreMountains.Feedbacks
             if (!Active || !FeedbackTypeAuthorized)
             {
                 return;
-            }            
+            }
+
+            if (!VFX.enabled)
+            {
+                VFX.enabled = true;
+            }
             // your play code goes here
             VFX.Play();
         }
