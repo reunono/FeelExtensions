@@ -9,7 +9,7 @@ namespace MoreMountains.Feedbacks
 	/// </summary>
 	[AddComponentMenu("")]
 	[FeedbackHelp("This feedback will let you apply forces and torques (relative or not) to a Rigidbody.")]
-	[FeedbackPath("GameObject/CustomRigidbody")]
+	[FeedbackPath("GameObject/RigidbodyExtended")]
 	public class CustomRigidbodyFeedback : MMF_Rigidbody
 	{	
 		[Tooltip("Clears velocity before applying force (usefull for pooled objects)")]
