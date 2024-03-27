@@ -3,6 +3,7 @@ This repository contains community-created extensions for Feel, More Mountains' 
 
 ## Contents
 * **CollisionManager**, _by Dravish_ : Collision Helper and Manager (see readme in directory)
+* **DamageNumbersProFeedback**, _by AlexanderGheorghe_ : feedback for spawning DamageNumbersPro's DamageNumber prefabs. if using this as a damage feedback in Corgi or TopDown engine, check the FeedbackIsProportionalToDamage option in the Health component
 * **DOTweenPro Feedbacks**, _by Anton_ : will let you play/play backwards/rewind/pause/restart/complete/kill both DOTween animations and DOTween paths
 * **FlareLight2D**, _by Jaron_ : will turn a light on or off based on its proximity to the player
 * **FMODEventFeedback**, _by Kaizen_ : will let you play a FMOD event
