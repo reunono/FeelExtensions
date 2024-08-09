@@ -2,6 +2,7 @@
 This repository contains community-created extensions for Feel, More Mountains' bestselling game feel solution, [available on the Unity Asset Store](http://u3d.as/2acD?aid=1011lKhG). These extensions can be anything, from an alternate take on an existing feedback, to brand new ones, or new ways to improve your game's juice.
 
 ## Contents
+* **CinemachineExtensions**: Feedbacks and shakers intended to work with Cinemachine components that aren't covered by the Impulse feedback.
 * **CollisionManager**, _by Dravish_ : Collision Helper and Manager (see readme in directory)
 * **DamageNumbersProFeedback**, _by AlexanderGheorghe_ : feedback for spawning DamageNumbersPro's DamageNumber prefabs. if using this as a damage feedback in Corgi or TopDown engine, check the FeedbackIsProportionalToDamage option in the Health component
 * **DOTweenPro Feedbacks**, _by Anton_ : will let you play/play backwards/rewind/pause/restart/complete/kill both DOTween animations and DOTween paths
