@@ -6,6 +6,12 @@ using UnityEngine.Audio;
 
 namespace MoreMountains.Feedbacks
 {
+
+    /// <summary>
+    /// FeedbackMAEvent class is a serializable representation of an AudioEvent that can be used with Master Audio
+    /// as part of the Feel system. This class enables detailed configuration and control of audio events within
+    /// a scene by utilizing Master Audio's functionality.
+    /// </summary>
     [Serializable]
     public class FeedbackMAEvent {
         // ReSharper disable InconsistentNaming

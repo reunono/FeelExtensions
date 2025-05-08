@@ -7,6 +7,18 @@ using UnityEngine.Audio;
 
 namespace MoreMountains.Feedbacks
 {
+    /// <summary>
+    /// Provides a custom property drawer for the <see cref="MAFeedbackHelpAttribute"/>, enabling enhanced rendering
+    /// and interaction in Unity inspectors for fields marked with this attribute.
+    /// </summary>
+    /// <remarks>
+    /// This class is primarily responsible for drawing customized inspector fields, adding contextual information, and facilitating
+    /// better user experience for fields tagged with the <see cref="MAFeedbackHelpAttribute"/>. It includes features such as displaying
+    /// headers, help icons, and additional customizable information.
+    /// </remarks>
+    /// <example>
+    /// Use <see cref="MAFeedbackHelpAttribute"/> on fields to enable the custom drawer functionality provided by this class.
+    /// </example>
     [CustomPropertyDrawer(typeof(MAFeedbackHelpAttribute))]
     public class MAFeedbackHelpAttributeDrawer : PropertyDrawer
     {

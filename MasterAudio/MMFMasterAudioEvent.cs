@@ -7,6 +7,17 @@ namespace MoreMountains.Feedbacks
 {
     // TODO: Test multiplayer functionality
 
+    /// <summary>
+    /// MMFMasterAudioEvent is a feedback class within the MoreMountains.Feedbacks system
+    /// that integrates with the Dark Tonic Master Audio toolkit. It enables control
+    /// of audio events associated with a Master Audio group, providing flexibility to
+    /// target specific audio settings in response to feedback triggers.
+    /// </summary>
+    /// <remarks>
+    /// This feedback requires a GameObject in the scene with an attached Master Audio Script.
+    /// The event type is configurable, and the sound's origin can be set using specific settings.
+    /// </remarks>
+    /// <seealso cref="MoreMountains.Feedbacks.MMF_Feedback"/>
     [ExecuteAlways]
     [AddComponentMenu("")]
     [FeedbackHelp("This feedback will let you control a group via the Master Audio. You will need a game object in your scene with a Master Audio Script on it for this to work.")]
@@ -35,7 +46,7 @@ namespace MoreMountains.Feedbacks
         public MasterAudio.SoundSpawnLocationMode soundSpawnMode = MasterAudio.SoundSpawnLocationMode.AttachToCaller;
         [Tooltip("the Transform that will be considered as the caller of the event")]
         public Transform TranformOfCaller;
-        [MAFeedbackHelp("Audio Event")]
+        [MAFeedbackHelp]
         public FeedbackMAEvent AudioEvent;
 
 #if MULTIPLAYER_ENABLED
@@ -53,6 +64,11 @@ namespace MoreMountains.Feedbacks
             PerformSingleAction(AudioEvent);
         }
 
+        /// <summary>
+        /// Executes a single Master Audio event action based on the specified parameters.
+        /// </summary>
+        /// <param name="aEvent">The specific audio event to be executed.</param>
+        /// <param name="eType">The type of the event to trigger. Defaults to CodeTriggeredEvent1.</param>
         private void PerformSingleAction(FeedbackMAEvent aEvent, EventSounds.EventType eType = EventSounds.EventType.CodeTriggeredEvent1) {
             if (MasterAudio.AppIsShuttingDown || MasterAudio.SafeInstance == null) {
                 return;
@@ -1728,7 +1744,7 @@ namespace MoreMountains.Feedbacks
         }
 
         /// <summary>
-        /// Returns the duration of the sound, or of the longest of the random sounds
+        /// Returns the duration of the feedback
         /// </summary>
         /// <returns></returns>
         protected virtual float GetDuration()
