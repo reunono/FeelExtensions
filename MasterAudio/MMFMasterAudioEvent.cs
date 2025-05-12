@@ -182,9 +182,9 @@ namespace MoreMountains.Feedbacks
 #if UNITY_IPHONE || UNITY_ANDROID
     // no mouse events!
 #else
-                    if (eType == EventType.OnMouseDrag) {
+                    /*if (eType == EventType.OnMouseDrag) {
                         _mouseDragResult = soundPlayed;
-                    }
+                    }*/
 #endif
                     break;
                 case MasterAudio.EventSoundFunctionType.PlaylistControl:
